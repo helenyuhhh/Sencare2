@@ -21,12 +21,8 @@
         "backgroundColor": "#ffffff"
       }
     },
-    
-      "web": {
-        "dev": {
-          "noWatch": true
-      },
-    "platforms": ["ios", "android", "web"]
-   }
+    "web": {
+      "favicon": "./assets/favicon.png"
+    }
   }
 }
