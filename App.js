@@ -3,6 +3,7 @@ import { StyleSheet, Text, View } from 'react-native';
 import PatientListScreen from './Screens/PatientListScreen'
 import LayoutModules from './Screens/LayoutModules';
 import { NavigationContainer } from '@react-navigation/native';
+
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createStackNavigator} from '@react-navigation/stack';
 import PatientDetailsScreen from './Screens/PatientDetailsScreen';

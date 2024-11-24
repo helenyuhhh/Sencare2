@@ -9,16 +9,21 @@
     "web": "expo start --web"
   },
   "dependencies": {
+    "@react-native-picker/picker": "2.7.5",
     "@react-navigation/bottom-tabs": "^6.6.1",
+    "@react-navigation/native": "^6.1.18",
     "@react-navigation/stack": "^6.4.1",
     "axios": "^1.7.7",
     "expo": "^51.0.39",
+    "expo-sqlite": "~14.0.6",
     "expo-status-bar": "~1.12.1",
     "react": "18.2.0",
     "react-native": "0.74.5",
+    "react-native-gesture-handler": "^2.21.2",
     "react-native-local-mongodb": "^4.0.0",
-    "@react-native-picker/picker": "2.7.5",
-    "expo-sqlite": "~14.0.6"
+    "react-native-reanimated": "^3.16.2",
+    "react-native-safe-area-context": "^4.14.0",
+    "react-native-screens": "^4.3.0"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0"
