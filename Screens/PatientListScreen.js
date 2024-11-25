@@ -10,13 +10,7 @@ const PatientListScreen = (props) => {
                 setPatientsList(data)
             } )
     } 
-    // fetch the tests, but need patients id
-    /*fetch('http://172.16.7.126:3000/api/patients').
-            then(response => response.json()).then(data => {
-                setPatientsList(data)
-            } )
-    } */
-    
+   
     useEffect(() => { 
         fetchPatients()
     },[])
