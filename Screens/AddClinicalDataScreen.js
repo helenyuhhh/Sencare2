@@ -4,7 +4,8 @@ import React, { useState } from "react";
 import {View, StyleSheet, Button, TextInput, Text } from "react-native";
 import axios from "axios";
 import PatientTestScreen from "./PatientTestScreen";
-import { Picker } from "@react-native-picker/picker";   
+import { Picker } from "@react-native-picker/picker"; 
+import DateTimePicker from '@react-native-community/datetimepicker';
 
 // future plan: add a button to the record data screen ti update the latest data?
 
@@ -23,6 +24,9 @@ const AddClinicalDataScreen = ({ navigation, route}) => {
     const [newType, setType] = useState('')
     // date
     const [newDate, setDate] = useState('')
+    // set date picker
+    const [date, setDatePicker] = useState(new Date())
+    const [show, setShow] = useState(false)
     // reading, should be number, but depending on the decision, add button would be greate?
     // add button to show the rest of the reading input area
     //const [newReading, setReading] = useState('')
@@ -65,11 +69,17 @@ const AddClinicalDataScreen = ({ navigation, route}) => {
             newCondition = "Normal"
         }
     }
+    const setNewDateForPicker = (event, date) =>{
+        if (date) {
+            setDatePicker(date)
+        }
+        setShow (false)
+    }
     const newTest = async ()=>{
         // test structure:
         const test = {
         patient_id: patientID,
-        date: newDate,
+        date: date,
         nurse_name: newNurse,
         type: newType, // type is test
         category: newCategory,
@@ -109,9 +119,7 @@ const AddClinicalDataScreen = ({ navigation, route}) => {
 
     return (
         <View style = {styles.viewStyle}>
-            <Text style = {styles.textStyle}>{patientID}</Text>
-            <TextInput style={styles.textStyle}
-            placeholder="Enter Type:"value = {newType} onChangeText={setType}></TextInput>
+            
             <View style={styles.pickerView}>
                 <Text style={styles.textStyle}>Select Test</Text>
                 <Picker selectedValue={newCategory}
@@ -130,8 +138,22 @@ const AddClinicalDataScreen = ({ navigation, route}) => {
 
             </View>
             <View style = {styles.inputView}>
-            <TextInput style={[styles.textStyle,marginTop=20]}
-            placeholder="Enter Date:"value = {newDate} onChangeText={setDate}></TextInput>
+                <View>
+                    <Button title="Select Date" onPress={()=>{setShow(true)}}></Button>
+                    {
+                        show && (
+                            <DateTimePicker
+                              value={date}
+                              mode="date" 
+                              display="default"
+                              onChange={setNewDateForPicker}
+                            />
+                          )
+                    }
+                    <Text style={[styles.textStyle,{marginTop:20}]}>{date.toDateString()}</Text>
+
+                </View>
+            
             <TextInput style={styles.textStyle}
             placeholder="Enter Nurse Name:"value = {newNurse} onChangeText={setNurse}></TextInput>
             {newCategory === "Heartbeat Rate" && (<TextInput style={styles.textStyle}
@@ -172,17 +194,6 @@ const AddClinicalDataScreen = ({ navigation, route}) => {
    )
 
 }
-/*
- <TextInput style={styles.textStyle}> {"Patient Name: "+ patient.name.first +" "} {patient.name.last} </TextInput>
-            <TextInput style={styles.textStyle}> { "Age: " + patient.age} </TextInput>
-            <TextInput style={styles.textStyle}> { "Gender: " + patient.gender} </TextInput>
-            <TextInput style={styles.textStyle}> { "Systolic: " + patient.clinical.systolic} </TextInput>
-            <TextInput style={styles.textStyle}> { "Diastolic: " + patient.clinical.diastolic} </TextInput>
-            <TextInput style={styles.textStyle}> { "Condition: " + patient.clinical.condition } </TextInput>
-            <TextInput style={styles.textStyle}> { "Weight: " + patient.weight} </TextInput>
-            <TextInput style={styles.textStyle}> { "Height: " + patient.height} </TextInput>
-            <TextInput style={styles.textStyle}> { "Recorded Date: " +patient.date} </TextInput>
-*/
 const styles = StyleSheet.create({
     viewStyle:{
         justifyContent: "flex-start",
