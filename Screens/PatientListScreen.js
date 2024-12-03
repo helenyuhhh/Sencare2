@@ -38,9 +38,7 @@ const PatientListScreen = (props) => {
             ]}>
                 <Text style={styles.textStyle}>{patient.name.first +" "} {patient.name.last}</Text>
                 <Text style={styles.textStyle}>{patient.room}</Text>
-                <Text style={[
-                      styles.textStyle,
-                      patient.condition == "Critical" && styles.criticalStyle]}>
+                <Text style={styles.textStyle}>
                     {patient.condition}
                 </Text>
                 <Image style={styles.imageStyle} source={{
@@ -92,7 +90,7 @@ const styles = StyleSheet.create({
         justifyContent:'space-between',
         borderWidth: 1,
         margin: 15,
-        borderRadius: 5,
+        borderRadius: 15,
         padding: 10
     },
     imageStyle: {
@@ -100,9 +98,9 @@ const styles = StyleSheet.create({
         height: 50
     },
     criticalStyle : {
-        color:"white",
-        backgroundColor: "red",
-        borderColor: "red"
+        
+        borderColor: "red",
+        borderWidth: 3,
     }
 })
 

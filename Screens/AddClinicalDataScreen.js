@@ -120,15 +120,10 @@ const AddClinicalDataScreen = ({ navigation, route}) => {
     return (
         <View style = {styles.viewStyle}>
             
-            <View style={styles.pickerView}>
+            <View >
                 <Text style={styles.textStyle}>Select Test</Text>
                 <Picker selectedValue={newCategory}
-                    onValueChange={(itemValue) => {setCategory(itemValue)
-                    // select
-                    //pickTest()
-                    }
-                    
-                    } 
+                    onValueChange={(itemValue) => {setCategory(itemValue)}} 
                     style = {styles.pickerStyle}>
                     <Picker.Item label="Heartbeat Rate" value="Heartbeat Rate" />
                     <Picker.Item label="Respiratory Rate" value="Respiratory Rate" />
@@ -139,7 +134,7 @@ const AddClinicalDataScreen = ({ navigation, route}) => {
             </View>
             <View style = {styles.inputView}>
                 <View>
-                    <Button title="Select Date" onPress={()=>{setShow(true)}}></Button>
+                    <Button style={styles.btnStyle} title="Select Date" onPress={()=>{setShow(true)}}></Button>
                     {
                         show && (
                             <DateTimePicker
@@ -183,7 +178,7 @@ const AddClinicalDataScreen = ({ navigation, route}) => {
             {/* <TextInput style={styles.textStyle}
             placeholder="Date Record:"value = {newDate} onChangeText={setNewDate}></TextInput> */}
             
-            <Button title="Save" onPress={async () => {
+            <Button style={styles.btnStyle} title="Save" onPress={async () => {
              await newTest()}}/>
 
             </View>
@@ -199,27 +194,30 @@ const styles = StyleSheet.create({
         justifyContent: "flex-start",
         alignItems: "flex-start",
         flexGrow: 1,
-        flex:1
-        
+        flex:1 ,
+        backgroundColor: "#E5F3D4"
     },
     textStyle : {
-        
         padding:3,
         fontSize: 25
     },
     pickerStyle:{
-        position:"absolute",
-        top: -40,
-        left: 80,
+        top: -6,
+        left: -12,
         width:300,
-        height:20
+    //    height:20
     },
     pickerView : {
         flexDirection:"column",
         padding:2
     },
     inputView:{
-        marginTop:120
+        marginTop:20
+    },
+    btnStyle: {
+        backgroundColor: '#F1CC9B',
+        color: 'coral'
+
     }
 })
 
