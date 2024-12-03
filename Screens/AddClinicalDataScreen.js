@@ -27,6 +27,9 @@ const AddClinicalDataScreen = ({ navigation, route}) => {
     // set date picker
     const [date, setDatePicker] = useState(new Date())
     const [show, setShow] = useState(false)
+    const [time, setTime] = useState(new Date())
+    const [showTime, setShowTime] = useState(false)
+    
     // reading, should be number, but depending on the decision, add button would be greate?
     // add button to show the rest of the reading input area
     //const [newReading, setReading] = useState('')
@@ -74,6 +77,12 @@ const AddClinicalDataScreen = ({ navigation, route}) => {
             setDatePicker(date)
         }
         setShow (false)
+    }
+    // for time
+    const setTimePicker = (event, selectedTime) =>{
+        const currentTime = selectedTime || time
+        setShowTime(false)
+        setTime(currentTime)
     }
     const newTest = async ()=>{
         // test structure:
@@ -146,6 +155,19 @@ const AddClinicalDataScreen = ({ navigation, route}) => {
                           )
                     }
                     <Text style={[styles.textStyle,{marginTop:20}]}>{date.toDateString()}</Text>
+
+                    <Button style={styles.btnStyle} title="Select Time" onPress={()=>{setShowTime(true)}}></Button>
+                    {
+                        showTime && (
+                            <DateTimePicker
+                              value={time}
+                              mode="time" 
+                              display="default"
+                              onChange={setTimePicker}
+                            />
+                          )
+                    }
+                    <Text style={[styles.textStyle,{marginTop:20}]}>{time.toTimeString()}</Text>
 
                 </View>
             
