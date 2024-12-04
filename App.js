@@ -24,7 +24,7 @@ export default function App() {
 
   const LoginStack = () =>{
     return (
-      <Stack.Navigator>
+      <Stack.Navigator >
         <Stack.Screen name = "LoginPage" component={LoginScreen}/>
         <Stack.Screen name = "PatientList" component={PatientListScreen}/>
         <Stack.Screen name = "PatientDetail" component={PatientDetailsScreen}/>
@@ -47,6 +47,7 @@ export default function App() {
         <Stack.Screen name = "PatientTests" component={PatientTestScreen}/>
         <Stack.Screen name = "TestDetails" component={TestDetailsScreen}/>
         <Stack.Screen name = "Record" component={DataHistoryScreen}/>
+        <Stack.Screen name = "AddTest" component={AddClinicalDataScreen}/>
         
       </Stack.Navigator>    
     )
@@ -60,7 +61,6 @@ export default function App() {
         </Stack.Navigator>    
         )
   }
-
    const LogOut = ()=> {
     return(
       <View>
@@ -72,18 +72,12 @@ export default function App() {
   return (
     <NavigationContainer>
       <Tab.Navigator>
+
       <Tab.Screen name='Login' component = {LoginStack}/>
-       
       <Tab.Screen name='Add' component={NameStack} />
       <Tab.Screen name='LogOut' component = {LogOut}/>
-      
-
     </Tab.Navigator>
-
-    </NavigationContainer>
-    
-    
-    
+    </NavigationContainer>  
   );
 }
 // <LayoutModules/>
