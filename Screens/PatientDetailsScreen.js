@@ -1,13 +1,20 @@
 // from now I want thisbutton only shows the basic details as an internatiate page
 // it will show patient's everything instead of clinical data cause it is stored in tests
-import { Text ,View, StyleSheet, Button,Image } from "react-native";
+import { Text ,View, StyleSheet, Button,Image, TouchableOpacity } from "react-native";
 // future plan: add a button to the record data screen ti update the latest data?
 
 const PatientDetailsScreen = ({route, navigation}) => {
     
     const patient = route.params.toPatientDetail
+    const patientID = patient._id // patient id
     const gotoTest = () => {
         navigation.navigate('PatientTests')
+    }
+    const deletePatient = ()=>{
+
+    }
+    const updatePatient = ()=>{
+
     }
     return (
         <View style = {styles.viewStyle}>
@@ -25,22 +32,27 @@ const PatientDetailsScreen = ({route, navigation}) => {
             <Text style={styles.textStyle}> { "Height: " + patient.height} </Text>
             
             {/*  */}
-            <Button title="View Tests list" onPress={()=>{
+            <View style = {styles.btnUpdateDelete}>
+            <TouchableOpacity style = {styles.deleteBtn} onPress={deletePatient}>
+               <Text style = {styles.bthTextStyle}>Delete</Text>
+               </TouchableOpacity>
+
+               <TouchableOpacity style = {styles.editBtn} onPress={updatePatient}>
+                <Text style = {styles.bthTextStyle}>Edit</Text>
+               </TouchableOpacity>
+            </View>
+            
+            <TouchableOpacity style={styles.addtestBtn} onPress={()=>{
                 // this acts like sender, sent the patient to next screen, var is called toPatientTest
             navigation.navigate('PatientTests', {toPatientTest:patient})
-        }}></Button>
+        }}>
+            <Text style = {styles.bthTextStyle}>Add Tests</Text>
+        </TouchableOpacity>
        </View>
           
    )
 
 }
-/*
-<View>
-        
-            
-            <Button title="Record New Data" > </Button>
-       </View>
-*/
 
 const styles = StyleSheet.create({
     viewStyle:{
@@ -54,8 +66,37 @@ const styles = StyleSheet.create({
     imageStyle: {
         width: 100,
         height: 100,
-        alignSelf:"center"
+        alignSelf:"center",
+        borderRadius:30
+    },
+    btnUpdateDelete: {
+        top:10,
+        flexDirection:"row",
+    },
+    editBtn:{
+        left:25,
+        width:180,
+        backgroundColor:'#93BA71',
+        borderRadius:20
+    },
+    deleteBtn:{
+        left:10,
+        width:180,
+        backgroundColor:'#F36969',
+        borderRadius:20
+    },
+    bthTextStyle:{
+        color: 'white',
+        fontWeight:"bold",
+        fontSize:35,
+        alignSelf:'center'
+    },
+    addtestBtn:{
+        top: 30,
+        backgroundColor:'#54A7F5',
+        borderRadius:20
     }
+
 })
 
 export default PatientDetailsScreen;
