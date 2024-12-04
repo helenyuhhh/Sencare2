@@ -34,6 +34,7 @@ const PatientDetailsScreen = ({route, navigation}) => {
                     onPress: ()=>console.log('OK pressed')
                 }
             ])
+            navigation.goBack()
 
             
         }catch(error){

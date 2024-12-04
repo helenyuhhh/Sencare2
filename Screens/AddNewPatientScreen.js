@@ -4,7 +4,7 @@
  * ->click the add test button -> add new test
  */
 import React, { useEffect, useState } from "react";
-import {View, StyleSheet, Button, TextInput } from "react-native";
+import {View, StyleSheet, Button, TextInput, Text, TouchableOpacity} from "react-native";
 // future plan: add a button to the record data screen ti update the latest data?
 import axios from "axios";
 import * as SQLite from 'expo-sqlite';
@@ -119,26 +119,71 @@ const AddNewPatientScreen = ({ navigation, route}) => {
 
     return (
         <View style = {styles.viewStyle}>
-            <TextInput style={styles.textStyle}
-            placeholder="Enter First Name:"value = {newFirst} onChangeText={setNewFirst}></TextInput>
-            <TextInput style={styles.textStyle}
-            placeholder="Enter Last Name:"value = {newLast} onChangeText={setNewLast}></TextInput>
-            <TextInput style={styles.textStyle}
+            <View style={styles.inputView}>
+                <Text style = {styles.labelText}>First Name:  </Text>
+                <TextInput style={styles.textStyle}
+                 placeholder="Enter First Name:"value = {newFirst} onChangeText={setNewFirst}>
+                </TextInput>
+            </View>
+            {/*-------------------------------------------*/}
+            <View style={styles.inputView}>
+                <Text style = {styles.labelText}>Last Name:  </Text>
+                <TextInput style={styles.textStyle}
+                placeholder="Enter Last Name:"value = {newLast} onChangeText={setNewLast}>
+                </TextInput>
+            </View>
+            {/*-------------------------------------------*/}
+            <View style={styles.inputView}>
+                <Text style = {styles.labelText}>Age:  </Text>
+                <TextInput style={styles.textStyle}
             placeholder="Enter Age:"value = {newAge} onChangeText={setNewAge}></TextInput>
-            <TextInput style={styles.textStyle}
-            placeholder="Enter Gender:"value = {newGender} onChangeText={setNewGender}></TextInput>
-            <TextInput style={styles.textStyle}
-            placeholder="Enter Room #:"value = {newRoom} onChangeText={setNewRoom}></TextInput>
-            <TextInput style={styles.textStyle}
-            placeholder="Enter Condition:"value = {newCondition} onChangeText={setNewCondition}></TextInput>
-            <TextInput style={styles.textStyle}
-            placeholder="Enter Weight:"value = {newWeight} onChangeText={setNewWeight}></TextInput>
-            <TextInput style={styles.textStyle}
-            placeholder="Enter Height:"value = {newHeight} onChangeText={setNewHeight}></TextInput>
-            <TextInput style={styles.textStyle}
+            </View>
+            {/*-------------------------------------------*/}
+            <View style={styles.inputView}>
+                <Text style = {styles.labelText}>Gender:  </Text>
+                <TextInput style={styles.textStyle}
+                 placeholder="Enter Gender:"value = {newGender} onChangeText={setNewGender}>
+                 </TextInput>
+            </View>
+            {/*-------------------------------------------*/}
+            <View style={styles.inputView}>
+                <Text style = {styles.labelText}>Room#:  </Text>
+                <TextInput style={styles.textStyle}
+                 placeholder="Enter Room #:"value = {newRoom} onChangeText={setNewRoom}>
+                </TextInput>
+            </View>
+            {/*------------------------------------------*/}
+            <View style={styles.inputView}>
+                <Text style = {styles.labelText}>Condition:  </Text>
+                <TextInput style={styles.textStyle}
+            placeholder="Enter Condition:"value = {newCondition} onChangeText={setNewCondition}>
+            </TextInput>
+            </View>
+            {/*---------------------------------------------*/}
+            <View style={styles.inputView}>
+                <Text style = {styles.labelText}>Enter Weight:  </Text>
+                <TextInput style={styles.textStyle}
+                 placeholder="Enter Weight:"value = {newWeight} onChangeText={setNewWeight}>
+                </TextInput>
+            </View>
+            {/*---------------------------------------------*/}
+            <View style={styles.inputView}>
+                <Text style = {styles.labelText}>Enter Height:  </Text>
+                <TextInput style={styles.textStyle}
+                 placeholder="Enter Height:"value = {newHeight} onChangeText={setNewHeight}>
+                </TextInput>
+            </View>
+            {/*------------------------------------*/}
+            <View style={styles.inputView}>
+                <Text style = {styles.labelText}>Date:  </Text>
+                <TextInput style={styles.textStyle}
             placeholder="Date Record:"value = {newDate} onChangeText={setNewDate}></TextInput>
-            <Button title="Save Patient" onPress = { async () => {
-             await newPatient()}}></Button>
+            </View>
+            {/*-----------------------------------*/}
+            <TouchableOpacity style = {styles.btnSaveStyle} onPress = { async () => {
+             await newPatient()}}>
+                <Text style = {styles.btnText}>Save Patient</Text>
+             </TouchableOpacity>
              {/*<Button title="Save to local" onPress = { addNewItemToList }></Button>*/}
             
        </View>
@@ -149,11 +194,39 @@ const AddNewPatientScreen = ({ navigation, route}) => {
 
 const styles = StyleSheet.create({
     viewStyle:{
-        alignItems: "stretch"
+        // alignItems: "stretch",
+        // backgroundColor:'#A1BD84'
     },
     textStyle : {
         padding:3,
-        fontSize: 20
+        fontSize: 25,
+        // backgroundColor:'#F4F7F1',
+        borderRadius:13,
+        width: 400
+    },
+    inputView: {
+        top: 35,
+        flexDirection:"row", 
+    },
+    labelText:{
+        padding:3,
+        fontSize: 25,
+        fontWeight:"bold"
+    },
+    btnSaveStyle:{
+        left:50,
+        top: 50,
+        borderRadius:15,
+        backgroundColor:'#A1BD84',
+        width:300,
+        height:60
+    },
+    btnText:{
+        top:15,
+        fontSize: 25,
+        color: 'white',
+        alignSelf:'center',
+        fontWeight:'500'
     }
 })
 
