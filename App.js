@@ -56,7 +56,8 @@ export default function App() {
   const NameStack = () => {
     return(
         <Stack.Navigator>
-          <Stack.Screen name = "NameScreen" component={NameScreen}/>
+          {/*<Stack.Screen name = "NameScreen" component={NameScreen}/>*/ }
+          
           <Stack.Screen name = "AddNewPatient" component={AddNewPatientScreen}/>
         </Stack.Navigator>    
         )

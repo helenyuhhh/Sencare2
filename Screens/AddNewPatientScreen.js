@@ -137,9 +137,10 @@ const AddNewPatientScreen = ({ navigation, route}) => {
             placeholder="Enter Height:"value = {newHeight} onChangeText={setNewHeight}></TextInput>
             <TextInput style={styles.textStyle}
             placeholder="Date Record:"value = {newDate} onChangeText={setNewDate}></TextInput>
-            <Button title="Save to MongoDB" onPress = { async () => {
+            <Button title="Save Patient" onPress = { async () => {
              await newPatient()}}></Button>
-            <Button title="Save to local" onPress = { addNewItemToList }></Button>
+             {/*<Button title="Save to local" onPress = { addNewItemToList }></Button>*/}
+            
        </View>
           
    )
