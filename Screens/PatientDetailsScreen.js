@@ -1,6 +1,6 @@
 // from now I want thisbutton only shows the basic details as an internatiate page
 // it will show patient's everything instead of clinical data cause it is stored in tests
-import { Text ,View, StyleSheet, Button,Image, TouchableOpacity } from "react-native";
+import { Text ,View, StyleSheet, Button,Image, TouchableOpacity, Alert} from "react-native";
 // future plan: add a button to the record data screen ti update the latest data?
 import axios from "axios";
 
@@ -11,17 +11,33 @@ const PatientDetailsScreen = ({route, navigation}) => {
     const gotoTest = () => {
         navigation.navigate('PatientTests')
     }
+    const confirmDelete = () =>{
+        Alert.alert('Alert', 'Are you sure to delete?',[
+            {
+                text:'Cancle',
+                onPress: () => console.log('Cancel Pressed'),
+                style: 'cancel'
+            },
+            {
+                text:'Yes',
+                onPress: deletePatient
+    
+            }
+        ])
+    }
     const deletePatient = async ()=>{
         try{
-            const response = await axios.delete(`http://172.16.7.126:3000/api/patients/${patientID}`)
-            if (response.status === 201) {
-                console.log('Patient Deleted!')
-            }
-            else {
-                console.log('Failed to delete:', response.statusText)
-            }
+            await axios.delete(`http://172.16.7.126:3000/api/patients/${patientID}`)
+            Alert.alert('Alert', 'Patient deleted!',[
+                {
+                    text: 'OK',
+                    onPress: ()=>console.log('OK pressed')
+                }
+            ])
+
+            
         }catch(error){
-            console.error('Error adding test:', error)
+            console.error('Error deleting patient:', error)
         }
 
     }
@@ -45,7 +61,7 @@ const PatientDetailsScreen = ({route, navigation}) => {
             
             {/*  */}
             <View style = {styles.btnUpdateDelete}>
-            <TouchableOpacity style = {styles.deleteBtn} onPress={deletePatient}>
+            <TouchableOpacity style = {styles.deleteBtn} onPress={confirmDelete}>
                <Text style = {styles.bthTextStyle}>Delete</Text>
                </TouchableOpacity>
 
@@ -58,7 +74,7 @@ const PatientDetailsScreen = ({route, navigation}) => {
                 // this acts like sender, sent the patient to next screen, var is called toPatientTest
             navigation.navigate('PatientTests', {toPatientTest:patient})
         }}>
-            <Text style = {styles.bthTextStyle}>Add Tests</Text>
+            <Text style = {styles.bthTextStyle}>Test History</Text>
         </TouchableOpacity>
        </View>
           
