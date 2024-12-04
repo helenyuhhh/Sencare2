@@ -93,10 +93,12 @@ const styles = StyleSheet.create({
         fontSize: 25
     },
     imageStyle: {
-        width: 100,
-        height: 100,
+        width: 130,
+        height: 130,
         alignSelf:"center",
-        borderRadius:30
+        borderRadius:30,
+        borderColor:'white',
+        borderWidth: 5
     },
     btnUpdateDelete: {
         top:10,

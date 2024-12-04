@@ -1,7 +1,7 @@
 // this file is to add clinical data, should be nagivate to data history page
 // add file to mongo db
 import React, { useState } from "react";
-import {View, StyleSheet, Button, TextInput, Text } from "react-native";
+import {View, StyleSheet, Button, TextInput, Text, TouchableOpacity} from "react-native";
 import axios from "axios";
 import PatientTestScreen from "./PatientTestScreen";
 import { Picker } from "@react-native-picker/picker"; 
@@ -131,9 +131,8 @@ const AddClinicalDataScreen = ({ navigation, route}) => {
             
             <View >
                 <Text style={styles.textStyle}>Select Test</Text>
-                <Picker selectedValue={newCategory}
-                    onValueChange={(itemValue) => {setCategory(itemValue)}} 
-                    style = {styles.pickerStyle}>
+                <Picker style = {styles.pickerStyle} selectedValue={newCategory}
+                    onValueChange={(itemValue) => {setCategory(itemValue)}}>
                     <Picker.Item label="Heartbeat Rate" value="Heartbeat Rate" />
                     <Picker.Item label="Respiratory Rate" value="Respiratory Rate" />
                     <Picker.Item label="Blood Oxygen Level" value="Blood Oxygen Level" />
@@ -143,7 +142,9 @@ const AddClinicalDataScreen = ({ navigation, route}) => {
             </View>
             <View style = {styles.inputView}>
                 <View>
-                    <Button style={styles.btnStyle} title="Select Date" onPress={()=>{setShow(true)}}></Button>
+                    <TouchableOpacity style={styles.btnStyle}onPress={()=>{setShow(true)}}>
+                        <Text style = {styles.btnText}>Select Date</Text>
+                    </TouchableOpacity>
                     {
                         show && (
                             <DateTimePicker
@@ -156,7 +157,9 @@ const AddClinicalDataScreen = ({ navigation, route}) => {
                     }
                     <Text style={[styles.textStyle,{marginTop:20}]}>{date.toDateString()}</Text>
 
-                    <Button style={styles.btnStyle} title="Select Time" onPress={()=>{setShowTime(true)}}></Button>
+                    <TouchableOpacity style={styles.btnStyle} onPress={()=>{setShowTime(true)}}>
+                        <Text style = {styles.btnText}>Select Time</Text>
+                    </TouchableOpacity>
                     {
                         showTime && (
                             <DateTimePicker
@@ -200,8 +203,10 @@ const AddClinicalDataScreen = ({ navigation, route}) => {
             {/* <TextInput style={styles.textStyle}
             placeholder="Date Record:"value = {newDate} onChangeText={setNewDate}></TextInput> */}
             
-            <Button style={styles.btnStyle} title="Save" onPress={async () => {
-             await newTest()}}/>
+            <TouchableOpacity style={styles.btnSave} onPress={async () => {
+             await newTest()}}>
+                <Text style = {styles.btnText}>Save</Text>
+             </TouchableOpacity>
 
             </View>
             
@@ -217,30 +222,51 @@ const styles = StyleSheet.create({
         alignItems: "flex-start",
         flexGrow: 1,
         flex:1 ,
-        backgroundColor: "#E5F3D4"
+        // backgroundColor: "#E5F3D4"
     },
     textStyle : {
         padding:3,
         fontSize: 25
     },
     pickerStyle:{
-        top: -6,
-        left: -12,
+        top: -70,
+        left: 80,
         width:300,
-    //    height:20
+        height:100,
     },
     pickerView : {
         flexDirection:"column",
         padding:2
     },
     inputView:{
-        marginTop:20
+        top:10
     },
     btnStyle: {
-        backgroundColor: '#F1CC9B',
-        color: 'coral'
-
+        top:20,
+        backgroundColor: '#FDD7C3',
+        color: 'coral',
+        width:200,
+        heigh:70,
+        borderRadius:8,
+        //alignSelf:'center'
+    },
+    btnText:{
+        fontWeight:'500',
+        color:'#D64D05',
+        fontSize:30,
+        alignSelf:'center'
+    },
+    btnSave:{
+        top:20,
+        backgroundColor: '#FDD7C3',
+        color: 'coral',
+        width:200,
+        heigh:70,
+        borderRadius:8,
+        left:90
     }
+
+
 })
 
 export default AddClinicalDataScreen;
