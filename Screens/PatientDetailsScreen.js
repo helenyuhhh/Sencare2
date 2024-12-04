@@ -2,6 +2,7 @@
 // it will show patient's everything instead of clinical data cause it is stored in tests
 import { Text ,View, StyleSheet, Button,Image, TouchableOpacity } from "react-native";
 // future plan: add a button to the record data screen ti update the latest data?
+import axios from "axios";
 
 const PatientDetailsScreen = ({route, navigation}) => {
     
@@ -10,10 +11,21 @@ const PatientDetailsScreen = ({route, navigation}) => {
     const gotoTest = () => {
         navigation.navigate('PatientTests')
     }
-    const deletePatient = ()=>{
+    const deletePatient = async ()=>{
+        try{
+            const response = await axios.delete(`http://172.16.7.126:3000/api/patients/${patientID}`)
+            if (response.status === 201) {
+                console.log('Patient Deleted!')
+            }
+            else {
+                console.log('Failed to delete:', response.statusText)
+            }
+        }catch(error){
+            console.error('Error adding test:', error)
+        }
 
     }
-    const updatePatient = ()=>{
+    const updatePatient = async ()=>{
 
     }
     return (
