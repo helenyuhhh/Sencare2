@@ -5,7 +5,7 @@ const PatientListScreen = (props) => {
     const [searchTerm, setSearchTerm] = useState('')
     const [patients,setPatientsList] = useState([])
     const fetchPatients = async() => {
-        fetch('http://172.16.7.126:3000/api/patients').
+        fetch('https://mapd713patientapi-g3dpdtdthvcbhwbh.canadacentral-01.azurewebsites.net/api/patients').
             then(response => response.json()).then(data => {
                 setPatientsList(data)
             } )
