@@ -14,6 +14,7 @@ import NameScreen from './Screens/NameScreen';
 import LoginScreen from './Screens/LoginScreen';
 import DataHistoryScreen from './Screens/DataHistoryScreen';
 import AddClinicalDataScreen from './Screens/AddClinicalDataScreen';
+import EditPatientInfoScreen from './Screens/EditPatientInfoScreen';
 
 
 
@@ -28,13 +29,14 @@ export default function App() {
         <Stack.Screen name = "LoginPage" component={LoginScreen}/>
         <Stack.Screen name = "PatientList" component={PatientListScreen}/>
         <Stack.Screen name = "PatientDetail" component={PatientDetailsScreen}/>
+        <Stack.Screen name = "PatientUpdate" component={EditPatientInfoScreen}/>
         <Stack.Screen name = "PatientTests" component={PatientTestScreen}/>
         <Stack.Screen name = "TestDetails" component={TestDetailsScreen}/>
         <Stack.Screen name = "Record" component={DataHistoryScreen}/>
         <Stack.Screen name = "AddTest" component={AddClinicalDataScreen}/>
       </Stack.Navigator>  
     
-
+    
     )
       
   }

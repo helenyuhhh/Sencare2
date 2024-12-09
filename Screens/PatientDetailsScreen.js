@@ -66,10 +66,13 @@ const PatientDetailsScreen = ({route, navigation}) => {
                <Text style = {styles.bthTextStyle}>Delete</Text>
                </TouchableOpacity>
 
-               <TouchableOpacity style = {styles.editBtn} onPress={updatePatient}>
+               <TouchableOpacity style = {styles.editBtn} onPress={()=>{
+            navigation.navigate('PatientUpdate', {toEditPatient:patient})
+        }}>
                 <Text style = {styles.bthTextStyle}>Edit</Text>
                </TouchableOpacity>
             </View>
+            
             
             <TouchableOpacity style={styles.addtestBtn} onPress={()=>{
                 // this acts like sender, sent the patient to next screen, var is called toPatientTest

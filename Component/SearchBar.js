@@ -3,6 +3,9 @@ import { View, StyleSheet, TextInput} from "react-native";
 import Feather from '@expo/vector-icons/Feather'; // import the icon from the github vector icon 
 // search bar is the child class of patient list, hence we can pass the term and onTermChange here
 const SearchBar = ({term, onTermChange}) =>{
+    useEffect(() => { 
+        
+    },[term])
     return(
         <View style = {styles.viewStyle}>
             <Feather name="search" style={styles.iconStyle} />

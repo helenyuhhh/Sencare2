@@ -21,7 +21,7 @@ const PatientTestScreen = ({route, navigation}) => {
     } 
     useEffect(() => { 
         fetchTests()
-    },[])
+    })
     testRow = (test) => 
         <TouchableOpacity onPress={()=>{
             // pass test to toTestDetail, toTestDetail is just a name(i think)
@@ -37,7 +37,6 @@ const PatientTestScreen = ({route, navigation}) => {
 
     return (
         <View>
-            <Button title = "Refresh List" onPress={()=>{fetchTests()}}/>
             {/* patient tests is defined as an json array, i want to view it through some button */}
             <FlatList
                 data={tests}

@@ -13,7 +13,7 @@ const PatientListScreen = (props) => {
    
     useEffect(() => { 
         fetchPatients()
-    },[])
+    },[]) // with =out [] it will render everytime the component changes
     
     const filterPatients = (nameToSearch)=> {
         if (nameToSearch == ""){
