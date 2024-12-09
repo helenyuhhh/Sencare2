@@ -1,13 +1,25 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, use } from "react";
 import { Text, FlatList ,View, StyleSheet, Image, TouchableOpacity, Button } from "react-native";
 import SearchBar from "../Component/SearchBar";
 const PatientListScreen = (props) => {
     const [searchTerm, setSearchTerm] = useState('')
     const [patients,setPatientsList] = useState([])
+    const [criticalPatients, setCriticalList] = useState([])
+    const [showCritical, setShowCritical] = useState(false)
+    const [normalPatients, setNormalList] = useState([])
+    const [showNormal, setShowNormal] = useState(false)
+    const [filterType, setFilterType] = useState('')
     const fetchPatients = async() => {
+        setShowCritical(false)
+        setShowNormal(false)
+        setFilterType("All")
         fetch('https://mapd713patientapi-g3dpdtdthvcbhwbh.canadacentral-01.azurewebsites.net/api/patients').
             then(response => response.json()).then(data => {
                 setPatientsList(data)
+                // below is the new added
+                /*if (data.condition == "Critical") {
+                    setCriticalList(data)
+                }*/
             } )
     } 
    
@@ -27,6 +39,19 @@ const PatientListScreen = (props) => {
             if (resultList.length > 0) {
                 setPatientsList(resultList)
             }
+        }
+    }
+    const filterPatientByType = ()=>{
+        if (filterType === "Critical") {
+            return patients.filter(patient => 
+                patient.condition === "Critical")
+        }
+        else if (filterType === "Normal") {
+            return patients.filter(patient => 
+                patient.condition === "Normal")
+        }
+        else {
+            return patients
         }
     }
     patientRow = (patient) => 
@@ -60,8 +85,17 @@ const PatientListScreen = (props) => {
                 filterPatients(newTerm)
             }} /> 
             <Button title = "Refresh List" onPress={()=>{fetchPatients()}}/>
+            <View style = {styles.filterView}>
+              <TouchableOpacity style = {styles.criticalBtnStyle} onPress={()=>{setFilterType("Critical")}}>
+                <Text style={styles.btnTextStyle}>Critical Patient</Text>
+              </TouchableOpacity>
+              <TouchableOpacity style = {styles.normalBtnStyle} onPress={()=>{setFilterType("Normal")}}>
+                <Text style={styles.btnTextStyle}>Normal Patient</Text>
+              </TouchableOpacity>
+            </View>
             <FlatList
-                data={patients}
+                data={filterPatientByType()}
+                
                  keyExtractor={(item,i) => i}
                 renderItem={ (listItem) => 
                     patientRow(listItem.item)
@@ -101,6 +135,27 @@ const styles = StyleSheet.create({
         
         borderColor: "red",
         borderWidth: 3,
+    },
+    filterView: {
+        flexDirection:"row"
+    },
+    criticalBtnStyle: {
+        left:10,
+        width:180,
+        backgroundColor:'#F36969',
+        borderRadius:10
+    },
+    normalBtnStyle:{
+        left:25,
+        width:180,
+        backgroundColor:'#93BA71',
+        borderRadius:10 
+    },
+    btnTextStyle:{
+        color: 'white',
+        fontWeight:"bold",
+        fontSize:20,
+        alignSelf:'center'
     }
 })
 
