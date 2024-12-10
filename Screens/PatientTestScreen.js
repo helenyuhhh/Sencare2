@@ -12,11 +12,10 @@ const PatientTestScreen = ({route, navigation}) => {
     // try to fetch the tests from patient
     const fetchTests = async() => {
         //endpoint changed, now fetching all the tests for all the patiets
-        fetch(`http://172.16.7.126:3000/api/patients/${patient._id}/tests`).
+        fetch(`https://mapd713patientapi-g3dpdtdthvcbhwbh.canadacentral-01.azurewebsites.net/api/patients/${patient._id}/tests`).
             then(response => response.json()).then(data => {
                 const filteredTests = data.filter(test => test.patient_id === patient._id)
                 setTestsList(filteredTests)
-                
             } )
     } 
     useEffect(() => { 

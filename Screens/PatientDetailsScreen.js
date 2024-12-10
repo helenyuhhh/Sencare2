@@ -27,7 +27,9 @@ const PatientDetailsScreen = ({route, navigation}) => {
     }
     const deletePatient = async ()=>{
         try{
-            await axios.delete(`http://172.16.7.126:3000/api/patients/${patientID}`)
+            await axios.delete(`https://mapd713patientapi-g3dpdtdthvcbhwbh.canadacentral-01.azurewebsites.net/api/patients/${patientID}`)
+
+            //await axios.delete(`http://172.16.7.126:3000/api/patients/${patientID}`)
             Alert.alert('Alert', 'Patient deleted!',[
                 {
                     text: 'OK',
