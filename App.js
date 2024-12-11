@@ -35,10 +35,7 @@ export default function App() {
         <Stack.Screen name = "Record" component={DataHistoryScreen}/>
         <Stack.Screen name = "AddTest" component={AddClinicalDataScreen}/>
       </Stack.Navigator>  
-    
-    
     )
-      
   }
 
   const PatientStack = () => {
@@ -74,11 +71,9 @@ export default function App() {
 // component={PatientStack} means that the whole negavition screen will be the component of home
   return (
     <NavigationContainer>
-      <Tab.Navigator>
-
+      <Tab.Navigator >
       <Tab.Screen name='Login' component = {LoginStack}/>
       <Tab.Screen name='Add' component={NameStack} />
-      
     </Tab.Navigator>
     </NavigationContainer>  
   );
