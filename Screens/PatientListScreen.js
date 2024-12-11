@@ -13,7 +13,8 @@ const PatientListScreen = (props) => {
         setShowCritical(false)
         setShowNormal(false)
         setFilterType("All")
-        fetch('https://mapd713patientapi-g3dpdtdthvcbhwbh.canadacentral-01.azurewebsites.net/api/patients').
+        
+        fetch('http://172.16.7.126:3000/api/patients').
             then(response => response.json()).then(data => {
                 setPatientsList(data)
                 // below is the new added
