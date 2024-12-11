@@ -110,10 +110,10 @@ const AddClinicalDataScreen = ({ navigation, route}) => {
             // Replace with your actual API URL and endpoint
             console.log("Test Object:", JSON.stringify(test, null, 2))
 
-            const response = await axios.post(`https://mapd713patientapi-g3dpdtdthvcbhwbh.canadacentral-01.azurewebsites.net/api/patients/${patientID}/tests`, test)
+            const response = await axios.post(`http://172.16.7.126:3000/api/patients/${patientID}/tests`, test)
             if (response.status === 201) {
                 console.log('New test added:', response.data)
-                await axios.patch(`https://mapd713patientapi-g3dpdtdthvcbhwbh.canadacentral-01.azurewebsites.net/api/patients/${patientID}`, {condition: newCondition})
+                await axios.patch(`http://172.16.7.126:3000/api/patients/${patientID}`, {condition: newCondition})
                 console.log('patient condition uodated', newCondition)
                 navigation.goBack()
             } else {
