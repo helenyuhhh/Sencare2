@@ -27,7 +27,7 @@ const EditPatientInfoScreen = ({ navigation, route}) => {
             height: newHeight ? newHeight : patient.height
         }
         try {
-            // Replace with your actual API URL and endpoint
+           
             console.log("Patient Object:", JSON.stringify(newpatient, null, 2))
 
             const response = await axios.patch(`http://172.16.7.126:3000/api/patients/${patientID}`, newpatient)

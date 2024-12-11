@@ -16,10 +16,7 @@ const PatientListScreen = (props) => {
         fetch('http://172.16.7.126:3000/api/patients').
             then(response => response.json()).then(data => {
                 setPatientsList(data)
-                // below is the new added
-                /*if (data.condition == "Critical") {
-                    setCriticalList(data)
-                }*/
+               
             } )
     } 
    

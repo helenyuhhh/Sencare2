@@ -46,12 +46,12 @@ const PatientDetailsScreen = ({route, navigation}) => {
         }
 
     }
-    const reFetchPatient = async ()=>{
+    /*const reFetchPatient = async ()=>{
         fetch(`http://172.16.7.126:3000/api/patients/${patientID}`)
     }
     useEffect(() => { 
         reFetchPatient()
-    })
+    })*/
     return (
         <View style = {styles.viewStyle}>
             <Image style={styles.imageStyle} source={{
