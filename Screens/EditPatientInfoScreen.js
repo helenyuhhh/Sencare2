@@ -42,6 +42,7 @@ const EditPatientInfoScreen = ({ navigation, route}) => {
         }
         navigation.goBack()
     }
+    
 
     return (
         <View style = {styles.viewStyle}>

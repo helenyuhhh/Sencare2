@@ -12,7 +12,7 @@ const PatientTestScreen = ({route, navigation}) => {
     // try to fetch the tests from patient
     const fetchTests = async() => {
         //endpoint changed, now fetching all the tests for all the patiets
-        fetch(`https://mapd713patientapi-g3dpdtdthvcbhwbh.canadacentral-01.azurewebsites.net/api/patients/${patient._id}/tests`).
+        fetch(`http://172.16.7.126:3000/api/patients/${patient._id}/tests`).
             then(response => response.json()).then(data => {
                 const filteredTests = data.filter(test => test.patient_id === patient._id)
                 setTestsList(filteredTests)
@@ -37,6 +37,7 @@ const PatientTestScreen = ({route, navigation}) => {
     return (
         <View>
             {/* patient tests is defined as an json array, i want to view it through some button */}
+            <View style = {styles.listView} >
             <FlatList
                 data={tests}
                  keyExtractor={(item,i) => i}
@@ -44,10 +45,15 @@ const PatientTestScreen = ({route, navigation}) => {
                     testRow(listItem.item)
                 }
             ></FlatList>
-            <Button title="Add Test" onPress={()=>{
+
+            </View>
+            
+            <TouchableOpacity style ={styles.btnSaveStyle} onPress={()=>{
                 // this acts like sender, sent the patient to next screen, var is called toPatientTest
              navigation.navigate('AddTest', {toAddP:patient})
-        }}></Button>
+            }}>
+                <Text style ={styles.btnText}>Add Test</Text>
+            </TouchableOpacity>
             
             {/*  */}
             
@@ -82,6 +88,24 @@ const styles = StyleSheet.create({
     dateStyle:{
         padding:5,
         fontSize: 15
+    },
+    listView: {
+        height:530
+    },
+    btnSaveStyle:{
+        top:15,
+        left: 50,
+        borderRadius:15,
+        backgroundColor:'#33819C',
+        width:300,
+        height:60
+    },
+    btnText:{
+        top:15,
+        fontSize: 25,
+        color: 'white',
+        alignSelf:'center',
+        fontWeight:'500'
     }
 })
 

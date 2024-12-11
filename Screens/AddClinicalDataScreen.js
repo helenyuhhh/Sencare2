@@ -23,7 +23,7 @@ const AddClinicalDataScreen = ({ navigation, route}) => {
     // type: Test
     const [newType, setType] = useState('')
     // date
-    const [newDate, setDate] = useState('')
+    const [newDate, setDate] = useState(new Date)
     // set date picker
     const [date, setDatePicker] = useState(new Date())
     const [show, setShow] = useState(false)
@@ -81,8 +81,10 @@ const AddClinicalDataScreen = ({ navigation, route}) => {
     // for time
     const setTimePicker = (event, selectedTime) =>{
         const currentTime = selectedTime || time
+        console.log(currentTime.toTimeString())
         setShowTime(false)
         setTime(currentTime)
+        
     }
     const newTest = async ()=>{
         // test structure:
@@ -243,8 +245,8 @@ const styles = StyleSheet.create({
     },
     btnStyle: {
         top:20,
-        backgroundColor: '#FDD7C3',
-        color: 'coral',
+        backgroundColor: '#6AA865',
+        color: 'white',
         width:200,
         heigh:70,
         borderRadius:8,
@@ -252,13 +254,13 @@ const styles = StyleSheet.create({
     },
     btnText:{
         fontWeight:'500',
-        color:'#D64D05',
+        color:'white',
         fontSize:30,
         alignSelf:'center'
     },
     btnSave:{
         top:20,
-        backgroundColor: '#FDD7C3',
+        backgroundColor: '#6AA865',
         color: 'coral',
         width:200,
         heigh:70,

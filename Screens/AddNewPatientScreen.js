@@ -112,7 +112,7 @@ const AddNewPatientScreen = ({ navigation, route}) => {
         } catch (error) {
             console.error('Error adding patient:', error)
         }
-        navigation.goBack()
+        
 
         
     }

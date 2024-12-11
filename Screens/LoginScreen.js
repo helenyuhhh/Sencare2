@@ -4,7 +4,7 @@ const LoginScreen = (props) =>{
     const [userName, setUserName] = useState('') // set user name
     const [password, setPassword] = useState('')
     const checkLogin = ()=> {
-        if (userName === "admin" && password == "admin123"){
+        if (userName === "Admin" && password == "admin123"){
             props.navigation.navigate("PatientList")
         }
         else {

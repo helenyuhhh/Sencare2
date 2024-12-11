@@ -28,6 +28,7 @@ export default function App() {
       <Stack.Navigator >
         <Stack.Screen name = "LoginPage" component={LoginScreen}/>
         <Stack.Screen name = "PatientList" component={PatientListScreen}/>
+        <Stack.Screen name = "AddNewPatient" component={AddNewPatientScreen}/>
         <Stack.Screen name = "PatientDetail" component={PatientDetailsScreen}/>
         <Stack.Screen name = "PatientUpdate" component={EditPatientInfoScreen}/>
         <Stack.Screen name = "PatientTests" component={PatientTestScreen}/>
@@ -42,6 +43,7 @@ export default function App() {
     return(
       <Stack.Navigator>
         <Stack.Screen name = "PatientList" component={PatientListScreen}/>
+        <Stack.Screen name = "AddNewPatient" component={AddNewPatientScreen}/>
         <Stack.Screen name = "PatientDetail" component={PatientDetailsScreen}/>
         <Stack.Screen name = "PatientTests" component={PatientTestScreen}/>
         <Stack.Screen name = "TestDetails" component={TestDetailsScreen}/>
@@ -73,9 +75,9 @@ export default function App() {
     <NavigationContainer>
       <Tab.Navigator >
       <Tab.Screen name='Login' component = {LoginStack}/>
-      <Tab.Screen name='Add' component={NameStack} />
     </Tab.Navigator>
     </NavigationContainer>  
+    
   );
 }
 // <LayoutModules/>

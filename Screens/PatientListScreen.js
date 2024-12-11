@@ -13,7 +13,6 @@ const PatientListScreen = (props) => {
         setShowCritical(false)
         setShowNormal(false)
         setFilterType("All")
-        
         fetch('http://172.16.7.126:3000/api/patients').
             then(response => response.json()).then(data => {
                 setPatientsList(data)
@@ -94,6 +93,7 @@ const PatientListScreen = (props) => {
                 <Text style={styles.btnTextStyle}>Normal Patient</Text>
               </TouchableOpacity>
             </View>
+            <View style = {styles.listView}>
             <FlatList
                 data={filterPatientByType()}
                 
@@ -102,6 +102,16 @@ const PatientListScreen = (props) => {
                     patientRow(listItem.item)
                 }
             ></FlatList>
+
+            </View>
+            
+            <View style = {styles.addPatientView}>
+            <TouchableOpacity style = {styles.btnSaveStyle} 
+                onPress={()=>{props.navigation.navigate("AddNewPatient")}}>
+                <Text style={styles.btnText}>Add Patient</Text>
+            </TouchableOpacity>
+            </View>
+            
         </View>   
    )
 }
@@ -157,6 +167,27 @@ const styles = StyleSheet.create({
         fontWeight:"bold",
         fontSize:20,
         alignSelf:'center'
+    },
+    btnSaveStyle:{
+        borderRadius:15,
+        backgroundColor:'#33819C',
+        width:300,
+        height:60
+    },
+    btnText:{
+        top:15,
+        fontSize: 25,
+        color: 'white',
+        alignSelf:'center',
+        fontWeight:'500'
+    },
+    addPatientView: {
+        top: 30,
+        left: 50
+        
+    },
+    listView: {
+        height:405
     }
 })
 

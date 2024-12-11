@@ -1,6 +1,8 @@
 // from now I want thisbutton only shows the basic details as an internatiate page
 // it will show patient's everything instead of clinical data cause it is stored in tests
 import { Text ,View, StyleSheet, Button,Image, TouchableOpacity, Alert} from "react-native";
+import React, { useState, useEffect, use } from "react";
+
 // future plan: add a button to the record data screen ti update the latest data?
 import axios from "axios";
 
@@ -44,9 +46,12 @@ const PatientDetailsScreen = ({route, navigation}) => {
         }
 
     }
-    const updatePatient = async ()=>{
-
+    const reFetchPatient = async ()=>{
+        fetch(`http://172.16.7.126:3000/api/patients/${patientID}`)
     }
+    useEffect(() => { 
+        reFetchPatient()
+    })
     return (
         <View style = {styles.viewStyle}>
             <Image style={styles.imageStyle} source={{
