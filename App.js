@@ -78,7 +78,7 @@ export default function App() {
 
       <Tab.Screen name='Login' component = {LoginStack}/>
       <Tab.Screen name='Add' component={NameStack} />
-      <Tab.Screen name='LogOut' component = {LogOut}/>
+      
     </Tab.Navigator>
     </NavigationContainer>  
   );
