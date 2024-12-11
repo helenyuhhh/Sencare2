@@ -120,9 +120,7 @@ const AddClinicalDataScreen = ({ navigation, route}) => {
         latestCondition()
         if (validInput) {
             try {
-                // Replace with your actual API URL and endpoint
                 console.log("Test Object:", JSON.stringify(test, null, 2))
-    
                 const response = await axios.post(`http://172.16.7.126:3000/api/patients/${patientID}/tests`, test)
                 if (response.status === 201) {
                     console.log('New test added:', response.data)
