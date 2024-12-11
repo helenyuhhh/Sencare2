@@ -1,7 +1,7 @@
 // this file is to add clinical data, should be nagivate to data history page
 // add file to mongo db
 import React, { useState } from "react";
-import {View, StyleSheet, Button, TextInput, Text, TouchableOpacity} from "react-native";
+import {View, StyleSheet, Button, TextInput, Text, TouchableOpacity, Alert} from "react-native";
 import axios from "axios";
 import PatientTestScreen from "./PatientTestScreen";
 import { Picker } from "@react-native-picker/picker"; 
@@ -29,6 +29,7 @@ const AddClinicalDataScreen = ({ navigation, route}) => {
     const [show, setShow] = useState(false)
     const [time, setTime] = useState(new Date())
     const [showTime, setShowTime] = useState(false)
+    const [validInput, setValid] = useState(false) // check the input
     
     // reading, should be number, but depending on the decision, add button would be greate?
     // add button to show the rest of the reading input area
@@ -47,6 +48,15 @@ const AddClinicalDataScreen = ({ navigation, route}) => {
     const [newID, setNewID] = useState("")
     
     var newCondition = ""
+    const checkInput = () => {
+        if (newBlOx > 1 || newRes > 20 || newDia > 200 || newSys > 200 || newHP > 500) {
+            setValid(false)
+        }
+        else {
+            setValid(true)
+            //newTest()
+        }
+    }
     // function for check condition
     const latestCondition = ()=> {
         let criticalBlO = false
@@ -106,24 +116,36 @@ const AddClinicalDataScreen = ({ navigation, route}) => {
         
         //navigation.goBack()
         // call the latest condition
+        checkInput()
         latestCondition()
-
-        try {
-            // Replace with your actual API URL and endpoint
-            console.log("Test Object:", JSON.stringify(test, null, 2))
-
-            const response = await axios.post(`http://172.16.7.126:3000/api/patients/${patientID}/tests`, test)
-            if (response.status === 201) {
-                console.log('New test added:', response.data)
-                await axios.patch(`http://172.16.7.126:3000/api/patients/${patientID}`, {condition: newCondition})
-                console.log('patient condition uodated', newCondition)
-                navigation.goBack()
-            } else {
-                console.error('Failed to add test:', response.statusText)
+        if (validInput) {
+            try {
+                // Replace with your actual API URL and endpoint
+                console.log("Test Object:", JSON.stringify(test, null, 2))
+    
+                const response = await axios.post(`http://172.16.7.126:3000/api/patients/${patientID}/tests`, test)
+                if (response.status === 201) {
+                    console.log('New test added:', response.data)
+                    await axios.patch(`http://172.16.7.126:3000/api/patients/${patientID}`, {condition: newCondition})
+                    console.log('patient condition uodated', newCondition)
+                    navigation.goBack()
+                } else {
+                    console.error('Failed to add test:', response.statusText)
+                }
+            } catch (error) {
+                console.error('Error adding test:', error)
             }
-        } catch (error) {
-            console.error('Error adding test:', error)
+
         }
+        else {
+            Alert.alert('Alert', 'Invalid Input!',[
+                {
+                    text: 'OK',
+                    onPress: ()=>console.log('OK pressed')
+                }
+            ])
+        }
+        
 
         
     }
@@ -204,11 +226,11 @@ const AddClinicalDataScreen = ({ navigation, route}) => {
             
             {/* <TextInput style={styles.textStyle}
             placeholder="Date Record:"value = {newDate} onChangeText={setNewDate}></TextInput> */}
-            
             <TouchableOpacity style={styles.btnSave} onPress={async () => {
              await newTest()}}>
                 <Text style = {styles.btnText}>Save</Text>
              </TouchableOpacity>
+            
 
             </View>
             
